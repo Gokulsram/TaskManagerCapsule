@@ -1,0 +1,39 @@
+<form name="form" class="form-horizontal" [formGroup]="form">
+
+    <div class="container">
+        <div class="col-md-5 add-task-outer mt-5 p-3">
+            <div class="form-group">
+                <label class="add-file-label">Task:</label>
+                <input type="text" class="form-control add-file-text" formControlName="Task1">
+                <!-- <div *ngIf="f.submitted && !Task1.valid" class="help-block">Task Name is required</div> -->
+            </div>
+            <div class="form-group">
+                <label class="add-file-label">Priority:</label>
+                <ng5-slider [options]="options" [(ngModel)]='value' formControlName="Priority" class="add-file-text slider-scroll"></ng5-slider>
+            </div>
+            <div class="form-group">
+                <label class="add-file-label">Parent Task:</label>
+                <select class="form-control add-file-text" formControlName="Parent_ID">
+                    <option></option>
+                    <option *ngFor="let task of parentTask" value={{task.Parent_ID}}>
+                        {{task.Parent_Task}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="add-file-label">Start Date:</label>
+                <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker class="form-control add-file-text"
+                    formControlName="Start_Date">
+            </div>
+            <div class="form-group">
+                <label class="add-file-label">End Date:</label>
+                <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker class="form-control add-file-text"
+                    formControlName="End_Date">
+            </div>
+            <div class="add-btn-task text-right mt-3">
+                <button class="btn btn-primary edit-btn mt-3 mr-3" (click)="onSubmit()">Add Task</button>
+                <a class="btn btn-info edit-btn mt-3" (click)='Clear();'>Reset</a>
+            </div>
+        </div>
+    </div>
+</form>
